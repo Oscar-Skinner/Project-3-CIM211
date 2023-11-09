@@ -35,6 +35,24 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""mouse"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""fb3d5634-ac4e-4aed-a537-5e61aa1feb15"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""blink"",
+                    ""type"": ""Button"",
+                    ""id"": ""df88e391-5eff-453b-aa02-4d8a9e524f11"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -92,6 +110,28 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""action"": ""movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""54595f03-8891-4dd3-8f40-0f3539f0c9b2"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""mouse"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""75bd9b80-43e6-4879-868e-a242c583b159"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""blink"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -101,6 +141,8 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_movement = m_Player.FindAction("movement", throwIfNotFound: true);
+        m_Player_mouse = m_Player.FindAction("mouse", throwIfNotFound: true);
+        m_Player_blink = m_Player.FindAction("blink", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -163,11 +205,15 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_movement;
+    private readonly InputAction m_Player_mouse;
+    private readonly InputAction m_Player_blink;
     public struct PlayerActions
     {
         private @PlayerInputs m_Wrapper;
         public PlayerActions(@PlayerInputs wrapper) { m_Wrapper = wrapper; }
         public InputAction @movement => m_Wrapper.m_Player_movement;
+        public InputAction @mouse => m_Wrapper.m_Player_mouse;
+        public InputAction @blink => m_Wrapper.m_Player_blink;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -180,6 +226,12 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @movement.started += instance.OnMovement;
             @movement.performed += instance.OnMovement;
             @movement.canceled += instance.OnMovement;
+            @mouse.started += instance.OnMouse;
+            @mouse.performed += instance.OnMouse;
+            @mouse.canceled += instance.OnMouse;
+            @blink.started += instance.OnBlink;
+            @blink.performed += instance.OnBlink;
+            @blink.canceled += instance.OnBlink;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -187,6 +239,12 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @movement.started -= instance.OnMovement;
             @movement.performed -= instance.OnMovement;
             @movement.canceled -= instance.OnMovement;
+            @mouse.started -= instance.OnMouse;
+            @mouse.performed -= instance.OnMouse;
+            @mouse.canceled -= instance.OnMouse;
+            @blink.started -= instance.OnBlink;
+            @blink.performed -= instance.OnBlink;
+            @blink.canceled -= instance.OnBlink;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -207,5 +265,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     public interface IPlayerActions
     {
         void OnMovement(InputAction.CallbackContext context);
+        void OnMouse(InputAction.CallbackContext context);
+        void OnBlink(InputAction.CallbackContext context);
     }
 }
