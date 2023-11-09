@@ -97,7 +97,11 @@ public class PlayerModel : MonoBehaviour
     IEnumerator blinkcoroutine()
     {
         blinkBool = true;
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(.1f);
+        
+        print("change environment");
+        
+        yield return new WaitForSeconds(.1f);
         blinkBool = false;
     }
     
