@@ -135,8 +135,6 @@ public class PlayerModel : MonoBehaviour
         
         GameManager.instance.Forget();
         
-        print("change environment");
-        
         yield return new WaitForSeconds(.1f);
         blinkBool = false;
     }
