@@ -7,34 +7,41 @@ using UnityEngine.InputSystem;
 
 public class PlayerModel : MonoBehaviour
 {
-    private PlayerInputs playerInputs;
+    #region Variables
 
-    public Transform playerTransform;
-    public Transform cameraTransform;
+    private PlayerInputs playerInputs;
+    
     public Rigidbody rb;
     
     public Vector3 movementVector;
     public Vector2 aimVector;
-
     public float moveSpeed;
     public bool moveBool;
     public float maxSpeed;
 
+    //player rotation and transforms
+    public Transform playerTransform;
+    public Transform cameraTransform;
     private float maxPitch = 90f;
     public float mouseSensitivity;
     private float minPitch = -40f;
-    
     private float playerRotationY = 0f;
-    
-    private float yaw = 0f; // For player rotation (side to side)
-    private float pitch = 0f; // For camera rotation (up and down)
+    private float yaw = 0f; 
+    private float pitch = 0f; 
 
+    //blinking stuff
+    public float blinkInterval;
+    private float blinkCountdown;
     private bool blinkBool;
-    private float blinkInteraval;
     public event Action blinkEvent;
+
+    #endregion
+    
     
     void Start()
     {
+        ResetTimer();
+        
         playerInputs = new PlayerInputs();
 
         playerInputs.Player.movement.performed += MovementOnperformed;
@@ -48,13 +55,7 @@ public class PlayerModel : MonoBehaviour
         playerInputs.Enable();
     }
 
-    private void BlinkOnperformed(InputAction.CallbackContext obj)
-    {
-        if (!blinkBool)
-        {
-            blinkFunction();
-        }
-    }
+    #region MovementAndLooking
 
     private void MouseOnperformed(InputAction.CallbackContext obj)
     {        
@@ -88,25 +89,16 @@ public class PlayerModel : MonoBehaviour
         //movementVector = Vector3.zero;
     }
 
-    void blinkFunction()
-    {
-        StartCoroutine(blinkcoroutine());
-        blinkEvent?.Invoke();
-    }
-
-    IEnumerator blinkcoroutine()
-    {
-        blinkBool = true;
-        yield return new WaitForSeconds(.1f);
-        
-        print("change environment");
-        
-        yield return new WaitForSeconds(.1f);
-        blinkBool = false;
-    }
+    #endregion
     
     void Update()
     {
+        blinkCountdown -= Time.deltaTime;
+
+        if (blinkCountdown <= 0)
+        {
+            blinkFunction();
+        }
         if (moveBool)
         {
             rb.AddRelativeForce(movementVector * moveSpeed, ForceMode.Force);
@@ -117,4 +109,48 @@ public class PlayerModel : MonoBehaviour
             rb.velocity = rb.velocity.normalized * maxSpeed;
         }
     }
+
+    #region BlinkingStuff
+
+    private void BlinkOnperformed(InputAction.CallbackContext obj)
+    {
+        blinkFunction();
+    }
+    
+    void blinkFunction()
+    {
+        if (!blinkBool)
+        {
+            StartCoroutine(blinkcoroutine());
+            blinkEvent?.Invoke();
+        }
+    }
+
+    IEnumerator blinkcoroutine()
+    {
+        blinkBool = true;
+        yield return new WaitForSeconds(.1f);
+        
+        ManualResetTimer();
+        
+        GameManager.instance.Forget();
+        
+        print("change environment");
+        
+        yield return new WaitForSeconds(.1f);
+        blinkBool = false;
+    }
+    
+    private void ResetTimer()
+    {
+        blinkCountdown = blinkInterval;
+    }
+
+    private void ManualResetTimer()
+    {
+        ResetTimer();
+    }
+
+    #endregion
+    
 }
