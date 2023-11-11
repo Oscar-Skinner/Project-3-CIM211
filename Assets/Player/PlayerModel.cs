@@ -37,7 +37,6 @@ public class PlayerModel : MonoBehaviour
 
     #endregion
     
-    
     void Start()
     {
         ResetTimer();
@@ -74,7 +73,8 @@ public class PlayerModel : MonoBehaviour
     
     private void MouseOncanceled(InputAction.CallbackContext obj)
     {
-        //aimVector = Vector3.zero;
+        // rb.constraints = RigidbodyConstraints.FreezeRotationY;
+        // rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
     }
     
     private void MovementOnperformed(InputAction.CallbackContext obj)
@@ -101,7 +101,7 @@ public class PlayerModel : MonoBehaviour
         }
         if (moveBool)
         {
-            rb.AddRelativeForce(movementVector * moveSpeed, ForceMode.Force);
+            rb.AddRelativeForce(movementVector * moveSpeed, ForceMode.Acceleration);
         }
         
         if (rb.velocity.magnitude > maxSpeed)
@@ -150,5 +150,4 @@ public class PlayerModel : MonoBehaviour
     }
 
     #endregion
-    
 }
