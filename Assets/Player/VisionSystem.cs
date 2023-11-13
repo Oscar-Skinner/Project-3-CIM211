@@ -88,8 +88,8 @@ public class VisionSystem : MonoBehaviour
 		if (other.GetComponentInParent<ChangingObjects>() != null)
 		{
 			ChangingObjects changeObj = other.GetComponentInParent<ChangingObjects>();
-
-			changeObj.Disappear();
+			
+			GameManager.instance.ForgetSpecific(changeObj);
 			
 			allInSight.Remove(changeObj);
 			

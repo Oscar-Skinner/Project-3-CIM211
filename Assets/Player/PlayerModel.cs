@@ -13,8 +13,8 @@ public class PlayerModel : MonoBehaviour
     
     public Rigidbody rb;
     
-    public Vector3 movementVector;
-    public Vector2 aimVector;
+    private Vector3 movementVector;
+    private Vector2 aimVector;
     public float moveSpeed;
     public bool moveBool;
     public float maxSpeed;
@@ -41,6 +41,8 @@ public class PlayerModel : MonoBehaviour
     {
         ResetTimer();
         
+        GameManager.instance.PhaseChangerEvent += InstanceOnPhaseChangerEvent;
+        
         playerInputs = new PlayerInputs();
 
         playerInputs.Player.movement.performed += MovementOnperformed;
@@ -53,6 +55,8 @@ public class PlayerModel : MonoBehaviour
         
         playerInputs.Enable();
     }
+
+    
 
     #region MovementAndLooking
 
@@ -117,7 +121,7 @@ public class PlayerModel : MonoBehaviour
         blinkFunction();
     }
     
-    void blinkFunction()
+    public void blinkFunction()
     {
         if (!blinkBool)
         {
@@ -137,6 +141,12 @@ public class PlayerModel : MonoBehaviour
         
         yield return new WaitForSeconds(.1f);
         blinkBool = false;
+    }
+    
+    private void InstanceOnPhaseChangerEvent(int phase)
+    {
+        blinkEvent?.Invoke();
+        ManualResetTimer();
     }
     
     private void ResetTimer()

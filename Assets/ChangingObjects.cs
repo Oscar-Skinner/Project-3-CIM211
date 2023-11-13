@@ -2,32 +2,73 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class ChangingObjects : MonoBehaviour
 {
-    public List<GameObject> objectsList = new List<GameObject>();
+    public List<GameObject> objectsListPhase1 = new List<GameObject>();
+    public List<GameObject> objectsListPhase2 = new List<GameObject>();
+    public List<GameObject> objectsListPhase3 = new List<GameObject>();
+    
     private List<GameObject> disappearedObjects = new List<GameObject>();
     private List<GameObject> appearedObjects = new List<GameObject>();
 
     private void Start()
     {
-        Disappear();
+        SetObjectInvisible();
+        
+        Disappear(1);
     }
     
-    public void Disappear()
+    public void Disappear(float phase)
     {
         disappearedObjects.Clear();
-        foreach (GameObject obj in objectsList)
+        
+        SetObjectInvisible();
+        
+        if (phase == 1)
         {
-            obj.SetActive(false);
-            disappearedObjects.Add(obj);
+            foreach (GameObject obj in objectsListPhase1)
+            {
+                disappearedObjects.Add(obj);
+            }
         }
-
+        if (phase == 2)
+        {
+            foreach (GameObject obj in objectsListPhase2)
+            {
+                disappearedObjects.Add(obj);
+            }
+        }
+        if (phase == 3)
+        {
+            foreach (GameObject obj in objectsListPhase3)
+            {
+                disappearedObjects.Add(obj);
+            }
+        }
+        
         // Randomly appear one object
         Reappear();
     }
 
+    public void SetObjectInvisible()
+    {
+        foreach (GameObject obj in objectsListPhase1)
+        {
+            obj.SetActive(false);
+        }
+        foreach (GameObject obj in objectsListPhase2)
+        {
+            obj.SetActive(false);
+        }
+        foreach (GameObject obj in objectsListPhase3)
+        {
+            obj.SetActive(false);
+        }
+    }
+    
     public void Reappear()
     {
         appearedObjects.Clear();
