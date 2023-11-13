@@ -782,22 +782,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5220821940868218350, guid: 061ce0fbf613d1a4cab6573b838f0e8c, type: 3}
-      propertyPath: musicPhases.Array.data[1]
-      value: 
-      objectReference: {fileID: 8300000, guid: 0885ed6109a2d48469150f66036d0eca, type: 3}
-    - target: {fileID: 5220821940868218350, guid: 061ce0fbf613d1a4cab6573b838f0e8c, type: 3}
-      propertyPath: musicPhases.Array.data[2]
-      value: 
-      objectReference: {fileID: 8300000, guid: 7fa04854fab1f3c4bab2d274b471cda2, type: 3}
     - target: {fileID: 8760107661596888721, guid: 061ce0fbf613d1a4cab6573b838f0e8c, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 6788549333493901818, guid: 061ce0fbf613d1a4cab6573b838f0e8c, type: 3}
-    - {fileID: 1648668514160622383, guid: 061ce0fbf613d1a4cab6573b838f0e8c, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 061ce0fbf613d1a4cab6573b838f0e8c, type: 3}
