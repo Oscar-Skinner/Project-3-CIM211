@@ -33,6 +33,12 @@ public class PlayerModel : MonoBehaviour
     public float blinkInterval;
     private float blinkCountdown;
     private bool blinkBool;
+    
+    //interaction stuff
+    public float sphereRadius;
+    public float maxDistance;
+    public LayerMask interactionLayer;
+    
     public event Action blinkEvent;
 
     #endregion
@@ -48,15 +54,39 @@ public class PlayerModel : MonoBehaviour
         playerInputs.Player.movement.performed += MovementOnperformed;
         playerInputs.Player.movement.canceled += MovementOncanceled;
         
-        playerInputs.Player.blink.performed += BlinkOnperformed;
-        
         playerInputs.Player.mouse.performed += MouseOnperformed;
         playerInputs.Player.mouse.canceled += MouseOncanceled;
+        
+        playerInputs.Player.blink.performed += BlinkOnperformed;
+        
+        playerInputs.Player.Interact.performed += InteractOnperformed;
+        
         
         playerInputs.Enable();
     }
 
-    
+    private void InteractOnperformed(InputAction.CallbackContext obj)
+    {
+        Vector3 origin = transform.position;
+        Vector3 direction = transform.forward;
+
+        // Perform the spherecast
+        if (Physics.SphereCast(origin, sphereRadius, direction, out RaycastHit hit, maxDistance, interactionLayer))
+        {
+            // A collision occurred, do something with the hit information
+            Debug.Log("Sphere cast hit: " + hit.collider.gameObject.name);
+            if (hit.collider.GetComponent<TaskObject>() != null)
+            {
+                hit.collider.GetComponent<TaskObject>().TickOffTask();
+            }
+        }
+        else
+        {
+            // No collision
+            Debug.Log("Sphere cast did not hit anything.");
+        }
+    }
+
 
     #region MovementAndLooking
 
