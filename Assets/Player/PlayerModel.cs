@@ -70,19 +70,27 @@ public class PlayerModel : MonoBehaviour
         Vector3 origin = transform.position;
         Vector3 direction = transform.forward;
 
-        // Perform the spherecast
-        if (Physics.SphereCast(origin, sphereRadius, direction, out RaycastHit hit, maxDistance, interactionLayer))
+        // Perform the spherecast and get all hits
+        RaycastHit[] hits = Physics.SphereCastAll(origin, sphereRadius, direction, maxDistance, interactionLayer);
+
+        // Loop through all hits
+        foreach (var hit in hits)
         {
             // A collision occurred, do something with the hit information
             Debug.Log("Sphere cast hit: " + hit.collider.gameObject.name);
-            if (hit.collider.GetComponent<TaskObject>() != null)
+
+            // Check if the hit object has a TaskObject script
+            TaskObject taskObject = hit.collider.GetComponent<TaskObject>();
+            if (taskObject != null)
             {
-                hit.collider.GetComponent<TaskObject>().TickOffTask();
+                // Do something with the TaskObject
+                taskObject.TickOffTask();
             }
         }
-        else
+
+        // If no collision occurred
+        if (hits.Length == 0)
         {
-            // No collision
             Debug.Log("Sphere cast did not hit anything.");
         }
     }
