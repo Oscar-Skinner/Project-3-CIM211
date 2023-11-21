@@ -16,12 +16,19 @@ public class GameManager : MonoBehaviour
     private float counter;
     public float phaseLength;
     private int phase = 1;
+    private bool gamePlaying;
 
     public event Action<int> PhaseChangerEvent;
 
     private void Start()
     {
+        // menu stuff
+    }
+
+    public void StartGame()
+    {
         PhaseChangerEvent?.Invoke(phase);
+        gamePlaying = true;
     }
 
     public void Forget()
@@ -60,25 +67,33 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        counter += Time.deltaTime;
-
-        if (counter >= phaseLength)
+        if (gamePlaying)
         {
-            if (phase <= 3)
+            counter += Time.deltaTime;
+
+            if (counter >= phaseLength)
             {
-                phase += 1;
-                
-                PhaseChangerEvent?.Invoke(phase);
-                Forget();
-                playermodel.blinkFunction();
-                
-                counter = 0;
+                if (phase <= 3)
+                {
+                    phase += 1;
+                    
+                    PhaseChangerEvent?.Invoke(phase);
+                    Forget();
+                    playermodel.blinkFunction();
+                    
+                    counter = 0;
+                }
+                else
+                {
+                    print("end");
+                }
+                print(phase);
             }
-            else
-            {
-                print("end");
-            }
-            print(phase);
+        }
+
+        if (Input.GetKeyDown(KeyCode.G) && gamePlaying == false)
+        {
+            StartGame();
         }
     }
 }

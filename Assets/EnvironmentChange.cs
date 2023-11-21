@@ -17,8 +17,9 @@ public class EnvironmentChange : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameManager.instance.PhaseChangerEvent += InstanceOnPhaseChangerEvent;
         DisableAll();
+        GameManager.instance.PhaseChangerEvent += InstanceOnPhaseChangerEvent;
+        
     }
 
     private void InstanceOnPhaseChangerEvent(int obj)
