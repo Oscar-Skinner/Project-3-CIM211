@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.AnimatedValues;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -31,14 +32,15 @@ public class PlayerModel : MonoBehaviour
 
     //blinking stuff
     public float blinkInterval;
-    private float blinkCountdown;
+    public float blinkCountdown;
     private bool blinkBool;
     
     //interaction stuff
     public float sphereRadius;
     public float maxDistance;
     public LayerMask interactionLayer;
-    
+
+    private bool canMove;
     public event Action blinkEvent;
 
     #endregion
@@ -46,16 +48,17 @@ public class PlayerModel : MonoBehaviour
     void Start()
     {
         ResetTimer();
-        
+        GameManager.instance.TaskMenuEvent += InstanceTaskMenuEvent;
         GameManager.instance.PhaseChangerEvent += InstanceOnPhaseChangerEvent;
         
         playerInputs = new PlayerInputs();
 
+        playerInputs.Player.TaskMenu.performed += TaskMenuOnperformed;
+        
         playerInputs.Player.movement.performed += MovementOnperformed;
         playerInputs.Player.movement.canceled += MovementOncanceled;
         
         playerInputs.Player.mouse.performed += MouseOnperformed;
-        playerInputs.Player.mouse.canceled += MouseOncanceled;
         
         playerInputs.Player.blink.performed += BlinkOnperformed;
         
@@ -65,33 +68,46 @@ public class PlayerModel : MonoBehaviour
         playerInputs.Enable();
     }
 
+    private void InstanceTaskMenuEvent(bool obj)
+    {
+        canMove = obj;
+    }
+
+    private void TaskMenuOnperformed(InputAction.CallbackContext obj)
+    {
+        GameManager.instance.TaskMenuOpen();
+    }
+
     private void InteractOnperformed(InputAction.CallbackContext obj)
     {
-        Vector3 origin = transform.position;
-        Vector3 direction = transform.forward;
-
-        // Perform the spherecast and get all hits
-        RaycastHit[] hits = Physics.SphereCastAll(origin, sphereRadius, direction, maxDistance, interactionLayer);
-
-        // Loop through all hits
-        foreach (var hit in hits)
+        if (canMove)
         {
-            // A collision occurred, do something with the hit information
-            Debug.Log("Sphere cast hit: " + hit.collider.gameObject.name);
+            Vector3 origin = transform.position;
+            Vector3 direction = transform.forward;
 
-            // Check if the hit object has a TaskObject script
-            TaskObject taskObject = hit.collider.GetComponent<TaskObject>();
-            if (taskObject != null)
+            // Perform the spherecast and get all hits
+            RaycastHit[] hits = Physics.SphereCastAll(origin, sphereRadius, direction, maxDistance, interactionLayer);
+
+            // Loop through all hits
+            foreach (var hit in hits)
             {
-                // Do something with the TaskObject
-                taskObject.TickOffTask();
-            }
-        }
+                // A collision occurred, do something with the hit information
+                Debug.Log("Sphere cast hit: " + hit.collider.gameObject.name);
 
-        // If no collision occurred
-        if (hits.Length == 0)
-        {
-            Debug.Log("Sphere cast did not hit anything.");
+                // Check if the hit object has a TaskObject script
+                TaskObject taskObject = hit.collider.GetComponent<TaskObject>();
+                if (taskObject != null)
+                {
+                    // Do something with the TaskObject
+                    taskObject.TickOffTask();
+                }
+            }
+
+            // If no collision occurred
+            if (hits.Length == 0)
+            {
+                Debug.Log("Sphere cast did not hit anything.");
+            }
         }
     }
 
@@ -99,30 +115,30 @@ public class PlayerModel : MonoBehaviour
     #region MovementAndLooking
 
     private void MouseOnperformed(InputAction.CallbackContext obj)
-    {        
-        aimVector = obj.ReadValue<Vector2>();
-        
-        yaw += aimVector.x * mouseSensitivity;   // Adjust the yaw based on horizontal mouse movement.
-        pitch -= aimVector.y * mouseSensitivity; // Adjust the pitch based on vertical mouse movement.
-
-        // Limit the pitch to prevent the camera from flipping.
-        pitch = Mathf.Clamp(pitch, -90f, 90f);
-
-        // Apply rotations to the player and camera.
-        playerTransform.rotation = Quaternion.Euler(0, yaw, 0); // Player's rotation (yaw).
-        cameraTransform.localRotation = Quaternion.Euler(pitch, 0, 0); // Camera's rotation (pitch).
-    }
-    
-    private void MouseOncanceled(InputAction.CallbackContext obj)
     {
-        // rb.constraints = RigidbodyConstraints.FreezeRotationY;
-        // rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+        if (canMove)
+        {
+            aimVector = obj.ReadValue<Vector2>();
+        
+            yaw += aimVector.x * mouseSensitivity;   // Adjust the yaw based on horizontal mouse movement.
+            pitch -= aimVector.y * mouseSensitivity; // Adjust the pitch based on vertical mouse movement.
+
+            // Limit the pitch to prevent the camera from flipping.
+            pitch = Mathf.Clamp(pitch, -90f, 90f);
+
+            // Apply rotations to the player and camera.
+            playerTransform.rotation = Quaternion.Euler(0, yaw, 0); // Player's rotation (yaw).
+            cameraTransform.localRotation = Quaternion.Euler(pitch, 0, 0); // Camera's rotation (pitch).
+        }
     }
     
     private void MovementOnperformed(InputAction.CallbackContext obj)
-    {        
-        moveBool = true;
-        movementVector = new Vector3(obj.ReadValue<Vector2>().x, 0, obj.ReadValue<Vector2>().y);
+    {
+        if (canMove)
+        {
+            moveBool = true;
+            movementVector = new Vector3(obj.ReadValue<Vector2>().x, 0, obj.ReadValue<Vector2>().y);
+        }
     }
     
     private void MovementOncanceled(InputAction.CallbackContext obj)
@@ -135,7 +151,10 @@ public class PlayerModel : MonoBehaviour
     
     void Update()
     {
-        blinkCountdown -= Time.deltaTime;
+        if (canMove)
+        {
+            blinkCountdown -= Time.deltaTime;
+        }
 
         if (blinkCountdown <= 0)
         {
@@ -161,10 +180,13 @@ public class PlayerModel : MonoBehaviour
     
     public void blinkFunction()
     {
-        if (!blinkBool)
+        if (canMove)
         {
-            StartCoroutine(blinkcoroutine());
-            blinkEvent?.Invoke();
+            if (!blinkBool)
+            {
+                StartCoroutine(blinkcoroutine());
+                blinkEvent?.Invoke();
+            }
         }
     }
 

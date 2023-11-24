@@ -17,7 +17,7 @@ public class Tasks : MonoBehaviour
     public bool task8;
 
     //public int number;
-
+    
     public event Action<int> TaskCompleteEvent;
     
     void Awake()
@@ -80,6 +80,11 @@ public class Tasks : MonoBehaviour
             }
         }
         TaskCompleteEvent.Invoke(taskNumber);
+        
+    }
+
+    public void ExitButton()
+    {
         
     }
 }

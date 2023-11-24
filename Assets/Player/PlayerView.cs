@@ -10,7 +10,7 @@ public class PlayerView : MonoBehaviour
     public Image topEyeLid;
     public Image bottomEyeLid;
 
-    public AudioSource source;
+    public AudioSource gramaphoneSource;
 
     public List<AudioClip> musicPhases;
     private int chosenClip;
@@ -18,7 +18,7 @@ public class PlayerView : MonoBehaviour
     public Animation animation;
 
     private bool isBlinking = false;
-
+    
     public PlayerModel blinkingModel;
     private void Start()
     {
@@ -30,12 +30,12 @@ public class PlayerView : MonoBehaviour
     {
         if (obj <= 3)
         {
-            source.clip = musicPhases[obj - 1];
-            source.Play();
+            gramaphoneSource.clip = musicPhases[obj - 1];
+            gramaphoneSource.Play();
         }
         else
         {
-            source.Stop();
+            gramaphoneSource.Stop();
         }
     }
 

@@ -13,22 +13,57 @@ public class GameManager : MonoBehaviour
     
     public List<GameObject> ForgottenObjects;
 
+    public float loadTime;
+    public GameObject blackscreen;
+    
+    
     private float counter;
+    private float saveCounter;
     public float phaseLength;
     private int phase = 1;
     private bool gamePlaying;
 
+    public event Action<bool> TaskMenuEvent;
     public event Action<int> PhaseChangerEvent;
 
     private void Start()
     {
-        // menu stuff
+        if (loadTime <= 0)
+        {
+            loadTime = 1;
+        }
+        StartCoroutine(DelayStart());
     }
 
-    public void StartGame()
+    IEnumerator DelayStart()
+    {
+        blackscreen.SetActive(true);
+        yield return new WaitForSeconds(loadTime);
+        blackscreen.SetActive(false);
+        StartTheGame();
+    }
+
+    public void StartTheGame()
     {
         PhaseChangerEvent?.Invoke(phase);
-        gamePlaying = true;
+        gamePlaying = true;        
+        TaskMenuEvent?.Invoke(gamePlaying);
+    }
+
+    public void TaskMenuOpen()
+    {
+        if (gamePlaying)
+        {
+            saveCounter = counter;
+            gamePlaying = false;
+            TaskMenuEvent?.Invoke(gamePlaying);
+        }
+        else
+        {
+            gamePlaying = true;
+            counter = saveCounter;
+            TaskMenuEvent?.Invoke(gamePlaying);
+        }
     }
 
     public void Forget()
@@ -89,11 +124,6 @@ public class GameManager : MonoBehaviour
                 }
                 print(phase);
             }
-        }
-
-        if (Input.GetKeyDown(KeyCode.G) && gamePlaying == false)
-        {
-            StartGame();
         }
     }
 }

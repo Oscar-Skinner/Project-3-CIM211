@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,12 +15,9 @@ public class EnvironmentChange : MonoBehaviour
 
     public int phase;
     
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        DisableAll();
         GameManager.instance.PhaseChangerEvent += InstanceOnPhaseChangerEvent;
-        
     }
 
     private void InstanceOnPhaseChangerEvent(int obj)
@@ -87,6 +85,7 @@ public class EnvironmentChange : MonoBehaviour
     {
         if (phase == 1)
         {
+            DisableAll();
             if (enviroObj1Check())
             {
                 if (environmentObj1.activeInHierarchy == false)
