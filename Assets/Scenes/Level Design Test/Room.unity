@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43667555, g: 0.48427176, b: 0.5645241, a: 1}
+  m_IndirectSpecularColor: {r: 0.4366757, g: 0.48427194, b: 0.5645252, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -724,7 +724,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 197221910}
-  - component: {fileID: 197221911}
   m_Layer: 0
   m_Name: Interactables
   m_TagString: Untagged
@@ -752,21 +751,6 @@ Transform:
   - {fileID: 882578754}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &197221911
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 197221909}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 497e93bc850c20a47b41fdd6bc92d3b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectsListPhase1: []
-  objectsListPhase2: []
-  objectsListPhase3: []
 --- !u!1 &197927493
 GameObject:
   m_ObjectHideFlags: 0
@@ -2211,15 +2195,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 419429499}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51d9b16bc0d80f746809fbda60c396f9, type: 3}
+  m_Script: {fileID: 11500000, guid: 497e93bc850c20a47b41fdd6bc92d3b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  environmentObj1: {fileID: 419429499}
-  environmentObj2: {fileID: 419429499}
-  environmentObj3: {fileID: 0}
-  environmentMat2: {fileID: 0}
-  environmentMat3: {fileID: 0}
-  phase: 1
+  objectsListPhase1: []
+  objectsListPhase2: []
+  objectsListPhase3: []
 --- !u!1 &439717301
 GameObject:
   m_ObjectHideFlags: 0
@@ -4222,15 +4203,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 882578753}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51d9b16bc0d80f746809fbda60c396f9, type: 3}
+  m_Script: {fileID: 11500000, guid: 497e93bc850c20a47b41fdd6bc92d3b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  environmentObj1: {fileID: 882578753}
-  environmentObj2: {fileID: 882578753}
-  environmentObj3: {fileID: 0}
-  environmentMat2: {fileID: 0}
-  environmentMat3: {fileID: 0}
-  phase: 1
+  objectsListPhase1: []
+  objectsListPhase2: []
+  objectsListPhase3: []
 --- !u!1 &892060679
 GameObject:
   m_ObjectHideFlags: 0
@@ -5250,17 +5228,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1069794545}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51d9b16bc0d80f746809fbda60c396f9, type: 3}
+  m_Script: {fileID: 11500000, guid: 497e93bc850c20a47b41fdd6bc92d3b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  environmentObj1: {fileID: 0}
-  environmentObj2: {fileID: 0}
-  environmentObj3: {fileID: 1025063122}
-  environmentMat2: {fileID: 0}
-  environmentMat3: {fileID: 0}
-  phase: 1
+  objectsListPhase1: []
+  objectsListPhase2: []
+  objectsListPhase3: []
 --- !u!1 &1075663287
 GameObject:
   m_ObjectHideFlags: 0
@@ -7561,15 +7536,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1779282940}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51d9b16bc0d80f746809fbda60c396f9, type: 3}
+  m_Script: {fileID: 11500000, guid: 497e93bc850c20a47b41fdd6bc92d3b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  environmentObj1: {fileID: 1779282940}
-  environmentObj2: {fileID: 0}
-  environmentObj3: {fileID: 0}
-  environmentMat2: {fileID: 0}
-  environmentMat3: {fileID: 0}
-  phase: 1
+  objectsListPhase1: []
+  objectsListPhase2: []
+  objectsListPhase3: []
 --- !u!1 &1811116687
 GameObject:
   m_ObjectHideFlags: 0
@@ -8168,15 +8140,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1929428575}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51d9b16bc0d80f746809fbda60c396f9, type: 3}
+  m_Script: {fileID: 11500000, guid: 497e93bc850c20a47b41fdd6bc92d3b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  environmentObj1: {fileID: 1929428575}
-  environmentObj2: {fileID: 0}
-  environmentObj3: {fileID: 0}
-  environmentMat2: {fileID: 0}
-  environmentMat3: {fileID: 0}
-  phase: 1
+  objectsListPhase1: []
+  objectsListPhase2: []
+  objectsListPhase3: []
 --- !u!1 &1935317029
 GameObject:
   m_ObjectHideFlags: 0
