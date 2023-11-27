@@ -28,7 +28,7 @@ public class PlayerView : MonoBehaviour
 
     private void InstanceOnPhaseChangerEvent(int obj)
     {
-        if (obj <= 3)
+        if (obj <= 4)
         {
             gramaphoneSource.clip = musicPhases[obj - 1];
             gramaphoneSource.Play();
