@@ -10,9 +10,11 @@ public class EnvironmentChange : MonoBehaviour
     public GameObject environmentObj2;
     public GameObject environmentObj3;
 
+    public bool disableOnPhase3;
+    
     public Material environmentMat2;
     public Material environmentMat3;
-
+    
     public int phase;
     
     private void Start()
@@ -108,25 +110,29 @@ public class EnvironmentChange : MonoBehaviour
         }
         if (phase == 3)
         {
-            if (enviroObj3Check())
+            if (disableOnPhase3)
             {
-                
                 DisableAll();
-                environmentObj3.SetActive(true);
-                
             }
-            else if (enviroMat3Check())
+            else
             {
-                if (environmentObj1.activeInHierarchy)
+                if (enviroObj3Check())
                 {
-                    environmentObj1.GetComponent<MeshRenderer>().material = environmentMat3;
-
+                    DisableAll();
+                    environmentObj3.SetActive(true);
                 }
-                if (enviroObj2Check())
+                else if (enviroMat3Check())
                 {
-                    if (environmentObj2.activeInHierarchy)
+                    if (environmentObj1.activeInHierarchy)
                     {
-                        environmentObj2.GetComponent<MeshRenderer>().material = environmentMat3;
+                        environmentObj1.GetComponent<MeshRenderer>().material = environmentMat3;
+                    }
+                    if (enviroObj2Check())
+                    {
+                        if (environmentObj2.activeInHierarchy)
+                        {
+                            environmentObj2.GetComponent<MeshRenderer>().material = environmentMat3;
+                        }
                     }
                 }
             }
