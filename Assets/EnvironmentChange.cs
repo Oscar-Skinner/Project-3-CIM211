@@ -105,7 +105,7 @@ public class EnvironmentChange : MonoBehaviour
             }
             else if (enviroMat2Check())
             {
-                environmentObj1.GetComponent<MeshRenderer>().material = environmentMat2;
+                environmentObj1.GetComponentInChildren<MeshRenderer>().material = environmentMat2;
             }
         }
         if (phase == 3)
@@ -125,13 +125,13 @@ public class EnvironmentChange : MonoBehaviour
                 {
                     if (environmentObj1.activeInHierarchy)
                     {
-                        environmentObj1.GetComponent<MeshRenderer>().material = environmentMat3;
+                        environmentObj1.GetComponentInChildren<MeshRenderer>().material = environmentMat3;
                     }
                     if (enviroObj2Check())
                     {
                         if (environmentObj2.activeInHierarchy)
                         {
-                            environmentObj2.GetComponent<MeshRenderer>().material = environmentMat3;
+                            environmentObj2.GetComponentInChildren<MeshRenderer>().material = environmentMat3;
                         }
                     }
                 }
