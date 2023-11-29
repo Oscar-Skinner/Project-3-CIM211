@@ -19,8 +19,8 @@ public class TaskObject : MonoBehaviour
     {
         if (complete == false)
         {
-            taskCompleteViewEvent?.Invoke();
             complete = true;
+            taskCompleteViewEvent?.Invoke();
         }
     }
 }

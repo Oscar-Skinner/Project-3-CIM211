@@ -68,6 +68,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void ProgressPhase()
+    {
+        if (phase <= 3)
+        {
+            phase += 1;
+                    
+            PhaseChangerEvent?.Invoke(phase);
+            Forget();
+            playermodel.blinkFunction();
+                    
+            counter = 0;
+        }
+    }
+
     public void Forget()
     {
         foreach (GameObject obj in ForgottenObjects)

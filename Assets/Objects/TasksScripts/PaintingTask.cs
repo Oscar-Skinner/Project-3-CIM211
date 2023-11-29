@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,10 +6,22 @@ using UnityEngine;
 public class PaintingTask : MonoBehaviour
 {
     public List<TaskObject> taskObject;
-
+    
     public Material pictureChangePhase1;
     public Material pictureChangePhase2;
+
+    public Texture phase1Texture;
+    public Texture phase2Texture;
     
+    public Texture phase1Original;
+    public Texture phase2Original;
+
+    private void Start()
+    {
+        pictureChangePhase1.mainTexture = phase1Original;
+        pictureChangePhase2.mainTexture = phase2Original;
+    }
+
     private void OnEnable()
     {
         foreach (TaskObject task in taskObject)
@@ -19,13 +32,7 @@ public class PaintingTask : MonoBehaviour
 
     private void TaskObjectOntaskCompleteViewEvent()
     {
-        if (GameManager.instance.phase == 1)
-        {
-            GetComponentInParent<MeshRenderer>().material = pictureChangePhase1;
-        }
-        if (GameManager.instance.phase == 2)
-        {
-            GetComponentInParent<MeshRenderer>().material = pictureChangePhase2;
-        }
+        pictureChangePhase1.mainTexture = phase1Texture;
+        pictureChangePhase2.mainTexture = phase2Texture;
     }
 }
