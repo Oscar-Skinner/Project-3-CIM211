@@ -19,7 +19,13 @@ public class PaintingTask : MonoBehaviour
 
     private void TaskObjectOntaskCompleteViewEvent()
     {
-        //do it based on phases
-        GetComponentInParent<MeshRenderer>().material = pictureChangePhase1;
+        if (GameManager.instance.phase == 1)
+        {
+            GetComponentInParent<MeshRenderer>().material = pictureChangePhase1;
+        }
+        if (GameManager.instance.phase == 2)
+        {
+            GetComponentInParent<MeshRenderer>().material = pictureChangePhase2;
+        }
     }
 }

@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
+using Unity.Collections;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -20,7 +22,7 @@ public class GameManager : MonoBehaviour
     private float counter;
     private float saveCounter;
     public float phaseLength;
-    private int phase = 1;
+    public int phase = 1;
     private bool gamePlaying;
 
     public event Action<bool> TaskMenuEvent;
