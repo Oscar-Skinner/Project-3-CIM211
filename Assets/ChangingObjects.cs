@@ -7,22 +7,39 @@ using Random = UnityEngine.Random;
 
 public class ChangingObjects : MonoBehaviour
 {
+    public bool beforeTask;
+    
     public List<GameObject> objectsListPhase1 = new List<GameObject>();
     public List<GameObject> objectsListPhase2 = new List<GameObject>();
     public List<GameObject> objectsListPhase3 = new List<GameObject>();
     
     private List<GameObject> disappearedObjects = new List<GameObject>();
     private List<GameObject> appearedObjects = new List<GameObject>();
-
+    
+    private int phase = 1;
     private void Start()
     {
         SetObjectInvisible();
         
-        Disappear(1);
+        Disappear(phase);
     }
-    
+
+    private void OnEnable()
+    {
+        SetObjectInvisible();
+        
+        Disappear(phase);
+    }
+
+    private void OnDisable()
+    {
+        SetObjectInvisible();
+    }
+
     public void Disappear(float phase)
     {
+        phase = this.phase;
+        
         disappearedObjects.Clear();
         
         SetObjectInvisible();

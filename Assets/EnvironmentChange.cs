@@ -9,7 +9,7 @@ public class EnvironmentChange : MonoBehaviour
     public GameObject environmentObj1;
     public GameObject environmentObj2;
     public GameObject environmentObj3;
-
+    
     public bool disableOnPhase3;
     
     public Material environmentMat2;

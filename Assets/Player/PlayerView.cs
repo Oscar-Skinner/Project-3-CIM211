@@ -37,6 +37,15 @@ public class PlayerView : MonoBehaviour
         {
             gramaphoneSource.Stop();
         }
+
+        if (obj >= 3)
+        {
+            gramaphoneSource.spatialBlend = 0;
+        }
+        else
+        {
+            gramaphoneSource.spatialBlend = 1;
+        }
     }
 
     public void BlinkFunction()

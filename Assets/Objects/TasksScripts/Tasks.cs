@@ -35,15 +35,8 @@ public class Tasks : MonoBehaviour
         
         DontDestroyOnLoad(gameObject);
     }
+
     
-    void Update()
-    {
-        // if (Input.GetKeyDown(KeyCode.Space))        
-        // {
-        //     // Example: Call the function with an integer argument
-        //     SetTasksStatus(number);
-        // }
-    }
 
     public void SetTasksStatus(int taskNumber)
     {
@@ -82,9 +75,11 @@ public class Tasks : MonoBehaviour
         TaskCompleteEvent.Invoke(taskNumber);
         
     }
-
+    
+    
+    
     public void ExitButton()
     {
-        
+        Application.Quit();
     }
 }
