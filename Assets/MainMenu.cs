@@ -15,18 +15,59 @@ public class MainMenu : MonoBehaviour
     public Button startButton;
     public Button optionsButton;
     public Button exitButton;
-    public Button returnButton;
-    public TextMeshProUGUI creditsText;
-
+    
+    public Image blackImage;
+    private bool fadeBool = true;
+    public float fadeDuration;
+    
     private void Start()
     {
+        StartCoroutine(ImageFadeOut());
         titleText.gameObject.SetActive(true);
         startButton.gameObject.SetActive(true);
         optionsButton.gameObject.SetActive(true);
         exitButton.gameObject.SetActive(true);
+    }
+
+    private IEnumerator ImageFadeOut()
+    {
+        float elapsedTime = 0f;
+        Color startColor = blackImage.color;
         
-        returnButton.gameObject.SetActive(false);
-        creditsText.gameObject.SetActive(false);
+        while (elapsedTime < fadeDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            
+            startColor.a = 1.0f - Mathf.Clamp01(elapsedTime / fadeDuration);
+            blackImage.color = startColor;
+            
+            yield return null;
+        }
+        
+        blackImage.color = new Color(startColor.r, startColor.g, startColor.b, 0f);
+        
+        blackImage.enabled = false;
+    }
+    private IEnumerator ImageFadeIn()
+    {
+        float elapsedTime = 0f;
+        Color startColor = blackImage.color;
+        
+        blackImage.enabled = true;
+
+        while (elapsedTime < fadeDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            
+            startColor.a = Mathf.Clamp01(elapsedTime / fadeDuration);
+            blackImage.color = startColor;
+            
+            yield return null;
+        }
+        
+        blackImage.color = new Color(startColor.r, startColor.g, startColor.b, 0f);
+        
+        SceneManager.LoadScene(2);
     }
 
     public void StartGame()
@@ -36,24 +77,8 @@ public class MainMenu : MonoBehaviour
 
     public void CreditsMenu()
     {
-        titleText.gameObject.SetActive(false);
-        startButton.gameObject.SetActive(false);
-        optionsButton.gameObject.SetActive(false);
-        exitButton.gameObject.SetActive(false);
-        
-        returnButton.gameObject.SetActive(true);
-        creditsText.gameObject.SetActive(true);
-    }
-
-    public void ReturnButtonClick()
-    {
-        titleText.gameObject.SetActive(true);
-        startButton.gameObject.SetActive(true);
-        optionsButton.gameObject.SetActive(true);
-        exitButton.gameObject.SetActive(true);
-        
-        returnButton.gameObject.SetActive(false);
-        creditsText.gameObject.SetActive(false);
+        //StartCoroutine(ImageFadeIn());
+        SceneManager.LoadScene(2);
     }
     
     
