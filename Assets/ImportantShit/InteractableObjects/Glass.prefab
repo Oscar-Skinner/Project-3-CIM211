@@ -11,8 +11,6 @@ GameObject:
   - component: {fileID: 2004779280350921647}
   - component: {fileID: 4820327811003668715}
   - component: {fileID: 6040638578828567846}
-  - component: {fileID: 604069631711973318}
-  - component: {fileID: 6894853659683327961}
   m_Layer: 3
   m_Name: InteractableCube
   m_TagString: Untagged
@@ -85,41 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &604069631711973318
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 544933905029418336}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6894853659683327961
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 544933905029418336}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa9a83492719e6c4fabe7bf38f1f711a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TaskNumber: 2
-  complete: 0
 --- !u!1 &574138470438834497
 GameObject:
   m_ObjectHideFlags: 0
@@ -130,7 +93,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2435626735476470717}
   - component: {fileID: 4590993755152194641}
-  m_Layer: 0
+  - component: {fileID: 3292811967936481926}
+  - component: {fileID: 2506365621104069618}
+  m_Layer: 3
   m_Name: Glass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,6 +138,41 @@ MonoBehaviour:
   environmentMat2: {fileID: 2100000, guid: 452d73b0b77243944a0e5acae188136a, type: 2}
   environmentMat3: {fileID: 0}
   phase: 0
+--- !u!65 &3292811967936481926
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 574138470438834497}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.5, y: 0.61502075, z: 0.5}
+  m_Center: {x: -78.117, y: 44.54901, z: -37.924}
+--- !u!114 &2506365621104069618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 574138470438834497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa9a83492719e6c4fabe7bf38f1f711a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TaskNumber: 2
+  complete: 0
 --- !u!1001 &7201763304249056022
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -241,13 +241,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Blue Vase
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 824c8db400013dd4bb682dbbe289f48a, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 824c8db400013dd4bb682dbbe289f48a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 335690096139358797}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 824c8db400013dd4bb682dbbe289f48a, type: 3}
 --- !u!4 &7240509386857659645 stripped
 Transform:
@@ -259,17 +260,3 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 824c8db400013dd4bb682dbbe289f48a, type: 3}
   m_PrefabInstance: {fileID: 7201763304249056022}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &335690096139358797
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8012084333860382279}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa9a83492719e6c4fabe7bf38f1f711a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TaskNumber: 2
-  complete: 0

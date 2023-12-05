@@ -16,6 +16,8 @@ public class PaintingTask : MonoBehaviour
     public Texture phase1Original;
     public Texture phase2Original;
 
+    public PlayerModel playerModel;
+    
     private void Start()
     {
         pictureChangePhase1.mainTexture = phase1Original;
@@ -32,6 +34,14 @@ public class PaintingTask : MonoBehaviour
 
     private void TaskObjectOntaskCompleteViewEvent()
     {
+        StartCoroutine(paintingTaskCompletedCoroutine());
+    }
+
+    public IEnumerator paintingTaskCompletedCoroutine()
+    {
+        playerModel.blinkFunction();
+        
+        yield return new WaitForSeconds(.1f);
         pictureChangePhase1.mainTexture = phase1Texture;
         pictureChangePhase2.mainTexture = phase2Texture;
     }

@@ -12,11 +12,6 @@ public class Tasks : MonoBehaviour
     public bool task3;
     public bool task4;
     public bool task5;
-    public bool task6;
-    public bool task7;
-    public bool task8;
-
-    //public int number;
     
     public event Action<int> TaskCompleteEvent;
     
@@ -35,7 +30,6 @@ public class Tasks : MonoBehaviour
         
         DontDestroyOnLoad(gameObject);
     }
-
     
 
     public void SetTasksStatus(int taskNumber)
@@ -61,22 +55,11 @@ public class Tasks : MonoBehaviour
                 case 5:
                     task5 = true;
                     break;
-                case 6:
-                    task6 = true;
-                    break;
-                case 7:
-                    task7 = true;
-                    break;
-                case 8:
-                    task8 = true;
-                    break;
             }
         }
         TaskCompleteEvent.Invoke(taskNumber);
         
     }
-    
-    
     
     public void ExitButton()
     {

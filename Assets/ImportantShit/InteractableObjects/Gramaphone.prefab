@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6876280716340579467}
   - component: {fileID: 8114450138535116900}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Audio Source
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -138,7 +138,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3967616463548809805}
   - component: {fileID: 9097439492162012482}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GramaphoneView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -183,7 +183,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2346663589340879214}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Gramaphone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -198,7 +198,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6455183840546722049}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -64.80717, y: 78.8977, z: -60.5263}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
@@ -273,6 +273,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3841231670745217963, guid: e00b37a859ae3a54f954d957fb2822e3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 3841231670745217963, guid: e00b37a859ae3a54f954d957fb2822e3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.25
+      objectReference: {fileID: 0}
     - target: {fileID: 5001714025154626206, guid: e00b37a859ae3a54f954d957fb2822e3, type: 3}
       propertyPath: m_Layer
       value: 3
@@ -280,6 +288,14 @@ PrefabInstance:
     - target: {fileID: 5001714025154626206, guid: e00b37a859ae3a54f954d957fb2822e3, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5193839229843186528, guid: e00b37a859ae3a54f954d957fb2822e3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 5193839229843186528, guid: e00b37a859ae3a54f954d957fb2822e3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.82
       objectReference: {fileID: 0}
     - target: {fileID: 5688846287795530593, guid: e00b37a859ae3a54f954d957fb2822e3, type: 3}
       propertyPath: m_Name
@@ -364,6 +380,10 @@ PrefabInstance:
     - target: {fileID: 8436424731055617919, guid: 08cb072512500c3479d2f37b12d4d825, type: 3}
       propertyPath: m_Name
       value: Nightstand
+      objectReference: {fileID: 0}
+    - target: {fileID: 8436424731055617919, guid: 08cb072512500c3479d2f37b12d4d825, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 9106246787774262725, guid: 08cb072512500c3479d2f37b12d4d825, type: 3}
       propertyPath: m_LocalScale.x

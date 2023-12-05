@@ -6,6 +6,7 @@ using Unity.Collections;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -70,16 +71,26 @@ public class GameManager : MonoBehaviour
 
     public void ProgressPhase()
     {
-        if (phase <= 3)
+        phase += 1;
+
+        if (phase >= 5)
         {
-            phase += 1;
-                    
-            PhaseChangerEvent?.Invoke(phase);
-            Forget();
-            playermodel.blinkFunction();
-                    
-            counter = 0;
+            StartCoroutine(EndTheGame());
+            return;
         }
+        
+        PhaseChangerEvent?.Invoke(phase);
+        Forget();
+        playermodel.blinkFunction();
+                
+        counter = 0;
+    }
+
+    private IEnumerator EndTheGame()
+    {
+        blackscreen.SetActive(true);
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void Forget()
