@@ -760,9 +760,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 205214317846476449}
-  moveSpeed: 15
+  moveSpeed: 10
   moveBool: 0
-  maxSpeed: 10
+  maxSpeed: 5
   playerTransform: {fileID: 2440928740810278319}
   cameraTransform: {fileID: 1058498374696287557}
   mouseSensitivity: 0.5
