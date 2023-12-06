@@ -14,6 +14,8 @@ public class Tasks : MonoBehaviour
     public bool task5;
     
     public event Action<int> TaskCompleteEvent;
+
+    public AudioSource taskSound;
     
     void Awake()
     {
@@ -30,7 +32,6 @@ public class Tasks : MonoBehaviour
         
         DontDestroyOnLoad(gameObject);
     }
-    
 
     public void SetTasksStatus(int taskNumber)
     {
@@ -41,28 +42,41 @@ public class Tasks : MonoBehaviour
             switch (taskNumber)
             {
                 case 1:
+                    TickOffBool(task1);
                     task1 = true;
                     break;
                 case 2:
+                    TickOffBool(task2);
                     task2 = true;
                     break;
                 case 3:
+                    TickOffBool(task3);
                     task3 = true;
                     break;
                 case 4:
+                    TickOffBool(task4);
                     task4 = true;
                     break;
                 case 5:
+                    PlaySound();
                     task5 = true;
                     break;
             }
         }
         TaskCompleteEvent.Invoke(taskNumber);
-        
+    }
+
+    public void TickOffBool(bool complete)
+    {
+        if (complete == false)
+        {
+            PlaySound();
+        }
+    }
+
+    public void PlaySound()
+    {
+        taskSound.Play();
     }
     
-    public void ExitButton()
-    {
-        Application.Quit();
-    }
 }
