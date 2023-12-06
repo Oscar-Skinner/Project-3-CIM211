@@ -31,6 +31,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         if (loadTime <= 0)
         {
             loadTime = 1;

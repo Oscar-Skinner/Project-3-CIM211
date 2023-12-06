@@ -77,6 +77,8 @@ public class PlayerModel : MonoBehaviour
 
     private void TaskMenuOnperformed(InputAction.CallbackContext obj)
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         GameManager.instance.TaskMenuOpen();
     }
 

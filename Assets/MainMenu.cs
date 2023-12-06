@@ -22,6 +22,8 @@ public class MainMenu : MonoBehaviour
     
     private void Start()
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         StartCoroutine(ImageFadeOut());
         titleText.gameObject.SetActive(true);
         startButton.gameObject.SetActive(true);
