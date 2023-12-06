@@ -36,6 +36,7 @@ public class TasksView : MonoBehaviour
     private void Start()
     {
         GameManager.instance.TaskMenuEvent += InstanceTaskMenuEvent;
+        GameManager.instance.PhaseChangerEvent += InstanceOnPhaseChangerEvent;
         
         if (tmpTask1 != null)
         {
@@ -56,6 +57,17 @@ public class TasksView : MonoBehaviour
         if (tmpTask5 != null)
         {
             tmpTask5.text = task5;
+        }
+    }
+
+    private void InstanceOnPhaseChangerEvent(int obj)
+    {
+        if (obj == 4)
+        {
+            tmpTask1.text = task5;
+            tmpTask2.text = task5;
+            tmpTask3.text = task5;
+            tmpTask4.text = task5;
         }
     }
 

@@ -68,6 +68,11 @@ public class PlayerModel : MonoBehaviour
         playerInputs.Enable();
     }
 
+    private void OnDisable()
+    {
+        playerInputs.Disable();
+    }
+
     private void InstanceTaskMenuEvent(bool obj)
     {
         canMove = obj;
@@ -91,9 +96,6 @@ public class PlayerModel : MonoBehaviour
             // Loop through all hits
             foreach (var hit in hits)
             {
-                // A collision occurred, do something with the hit information
-                Debug.Log("Sphere cast hit: " + hit.collider.gameObject.name);
-
                 // Check if the hit object has a TaskObject script
                 TaskObject taskObject = hit.collider.GetComponent<TaskObject>();
                 if (taskObject != null)
@@ -101,12 +103,6 @@ public class PlayerModel : MonoBehaviour
                     // Do something with the TaskObject
                     taskObject.TickOffTask();
                 }
-            }
-
-            // If no collision occurred
-            if (hits.Length == 0)
-            {
-                Debug.Log("Sphere cast did not hit anything.");
             }
         }
     }

@@ -47,6 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   topEyeLid: {fileID: 5086501132673402689}
   bottomEyeLid: {fileID: 6127544605623653700}
+  instructions: {fileID: 0}
+  finalText: {fileID: 0}
   gramaphoneSource: {fileID: 0}
   musicPhases:
   - {fileID: 8300000, guid: b1a04f62be6f5cf42bc0f070de9d505c, type: 3}
@@ -55,6 +57,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a8c5a9e588023734498abeb59ce11c6b, type: 3}
   animation: {fileID: 6252786795370273497}
   blinkingModel: {fileID: 3302341723242504920}
+  typingSpeed: 0
+  textToType: 
+  displayText: {fileID: 0}
 --- !u!1 &3912457843656706808
 GameObject:
   m_ObjectHideFlags: 0
@@ -755,9 +760,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 205214317846476449}
-  moveSpeed: 10
+  moveSpeed: 15
   moveBool: 0
-  maxSpeed: 5
+  maxSpeed: 10
   playerTransform: {fileID: 2440928740810278319}
   cameraTransform: {fileID: 1058498374696287557}
   mouseSensitivity: 0.5

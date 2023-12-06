@@ -19,7 +19,6 @@ public class ChangingObjects : MonoBehaviour
     private int phase = 1;
     private void Start()
     {
-        print(gameObject.name);
         SetObjectInvisible();
         
         Disappear(phase);

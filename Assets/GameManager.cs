@@ -89,8 +89,11 @@ public class GameManager : MonoBehaviour
     private IEnumerator EndTheGame()
     {
         blackscreen.SetActive(true);
+        Destroy(Tasks.instance.gameObject);
         yield return new WaitForSeconds(1);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        yield return new WaitForSeconds(1);
+        Destroy(instance.gameObject);
     }
 
     public void Forget()
@@ -145,11 +148,6 @@ public class GameManager : MonoBehaviour
                     
                     counter = 0;
                 }
-                else
-                {
-                    print("end");
-                }
-                print(phase);
             }
         }
     }
