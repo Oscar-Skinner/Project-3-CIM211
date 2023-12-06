@@ -16155,8 +16155,14 @@ PrefabInstance:
       objectReference: {fileID: 1163243042}
     - target: {fileID: 5220821940868218350, guid: 061ce0fbf613d1a4cab6573b838f0e8c, type: 3}
       propertyPath: textToType
-      value: "Your Memories Are Fading...  \n\nThe only one that remains is your
-        gramaphone...\n\nCheck on it..."
+      value: 'Your memories are fading...
+
+
+        The only one that remains is
+        your gramaphone...
+
+
+        Check on it...'
       objectReference: {fileID: 0}
     - target: {fileID: 5220821940868218350, guid: 061ce0fbf613d1a4cab6573b838f0e8c, type: 3}
       propertyPath: displayText
